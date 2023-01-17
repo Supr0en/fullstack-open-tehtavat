@@ -61,6 +61,7 @@ function App() {
           <img src={countries[0].flags.png} width='150px' ></img>
           <h2>Weather in {countries[0].capital}</h2>
           <p>temperature: {(weather?.main?.temp - 272).toFixed(2)} Celsius</p>
+          <img src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}.png`} height='100px' alt='' />
           <p>wind: {weather?.wind.speed} m/s</p>
         </>
       )}
