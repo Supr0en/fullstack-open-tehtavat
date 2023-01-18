@@ -1,3 +1,3 @@
 # fullstack-open-tehtavat
 
-linkki sivulle: https://puhelinluettelo.herokuapp.com/api/persons/
+linkki osa3 puheliluetteloon: https://puhelinluettelo.herokuapp.com/api/persons/
