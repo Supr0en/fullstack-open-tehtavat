@@ -85,6 +85,20 @@ describe ('api tests', () => {
         const updatedBlog = blogsAtEnd.find(blog => blog.id === blogToUpdate.id);
         expect(updatedBlog.likes).toBe(likes);
     });
+    test('creating new user if unauthorized', async () => {
+        const blogsAtStart = await helper.blogsInDb();
+
+        const newBlog = {
+            title: 'eitoimi',
+            author: 'toimii',
+            url: 'https://localhost:3003'
+        }
+    
+        await api.post('/api/blogs').send(newBlog).expect(401);
+        const blogsAtEnd = await helper.blogsInDb();
+
+        expect(blogsAtEnd).toHaveLength(blogsAtStart.length);
+    });
 })
 
 describe('when there is initially one user at db', () => {
@@ -142,21 +156,6 @@ describe('when there is initially one user at db', () => {
         const userCount = get.body.length;
         await api.post('/api/users').send(newUser).expect(400);
         expect(userCount).not.toBe(userCount + 1);
-    });
-
-    test('creating new user if unauthorized', async () => {
-        const blogsAtStart = await helper.blogsInDb();
-
-        const newBlog = {
-            title: 'eitoimi',
-            author: 'toimii',
-            url: 'https://localhost:3003'
-        }
-    
-        await api.post('/api/blogs').send(newBlog).expect(401);
-        const blogsAtEnd = await helper.blogsInDb();
-
-        expect(blogsAtEnd).toHaveLength(blogsAtStart.length);
     });
 })
 
