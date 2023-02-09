@@ -1,0 +1,27 @@
+{
+    "name": "osa9-tehtavat",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "bmiCalculator": "ts-node bmiCalculator.ts",
+        "exercises": "ts-node exerciseCalculator.ts",
+        "start": "ts-node index.ts",
+        "dev": "ts-node-dev index.ts",
+        "lint": "eslint --ext .ts ."
+    },
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "@types/express": "^4.17.17",
+        "@typescript-eslint/eslint-plugin": "^5.51.0",
+        "@typescript-eslint/parser": "^5.51.0",
+        "eslint": "^8.33.0",
+        "ts-node": "^10.9.1",
+        "ts-node-dev": "^2.0.0",
+        "typescript": "^4.9.5"
+    },
+    "dependencies": {
+        "express": "^4.18.2"
+    }
+}
