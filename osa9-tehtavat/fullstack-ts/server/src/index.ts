@@ -14,30 +14,30 @@ enum Gender {
     Female = 'Female',
 }
 
-type PatientData = {
+interface Diagnoses {
+    code: string;
+    name: string;
+    latin?: string;
+}
+
+interface PatientData {
     name: string;
     ssn: string;
     dateOfBirth: string;
     occupation: string;
     gender: Gender;
-};
+}
 
-type Patients = {
+interface Patients {
     id: string;
     name: string;
     dateOfBirth: string;
     ssn?: string;
     gender: string;
     occupation: string;
-};
+}
 
 type newPatients = Exclude<Patients, 'ssn'>;
-
-type Diagnoses = {
-    code: string;
-    name: string;
-    latin?: string;
-};
 
 const PORT = 5000;
 
@@ -53,12 +53,18 @@ app.get('/api/diagnoses', (req, res) => {
 
 app.get('/api/patients', (req, res) => {
     const data: newPatients[] = patients;
-    const newData = data.map((patient) => {
+    const newData: newPatients[] = data.map((patient) => {
         const newPatients = { ...patient };
         delete newPatients.ssn;
         return newPatients;
     });
     res.send(newData);
+});
+
+app.get('/api/patients/:id', (req, res) => {
+    const data: PatientData[] = patients;
+
+    res.json(data);
 });
 
 app.post('/api/patients', (req, res) => {
